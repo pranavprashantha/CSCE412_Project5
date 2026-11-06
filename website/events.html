@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events | Fieldline Run Club</title>
+  <meta name="description" content="Upcoming road, track and trail runs.">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="logo" href="index.html"><img src="images/logo.svg" alt="">Fieldline</a>
+        <button class="nav-toggle" aria-expanded="false" aria-label="Open menu">Menu</button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="events.html" class="active" aria-current="page">Events</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="signin.html">Sign In</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <span class="label">Upcoming Events</span>
+        <h1>Find your next run</h1>
+        <p>All runs are free and open to everyone. Filter by type to find the one that fits you.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filters" role="group" aria-label="Filter events">
+          <button type="button" class="active" data-filter="all">All</button>
+          <button type="button" data-filter="road">Road</button>
+          <button type="button" data-filter="track">Track</button>
+          <button type="button" data-filter="trail">Trail</button>
+        </div>
+        <ul class="event-list">
+          <li class="event" data-type="road">
+            <div class="date">Nov 17<span>Tue, 6:30 am</span></div>
+            <div>
+              <h3>Downtown easy loop</h3>
+              <p>City Hall steps &middot; 5k</p>
+            </div>
+            <div class="type">Road</div>
+          </li>
+          <li class="event" data-type="track">
+            <div class="date">Nov 19<span>Thu, 6:00 pm</span></div>
+            <div>
+              <h3>400m repeats</h3>
+              <p>Community track &middot; 6k total</p>
+            </div>
+            <div class="type">Track</div>
+          </li>
+          <li class="event" data-type="trail">
+            <div class="date">Nov 21<span>Sat, 7:00 am</span></div>
+            <div>
+              <h3>Creek trail long run</h3>
+              <p>North trailhead &middot; 12k</p>
+            </div>
+            <div class="type">Trail</div>
+          </li>
+          <li class="event" data-type="road">
+            <div class="date">Nov 24<span>Tue, 6:30 am</span></div>
+            <div>
+              <h3>Downtown easy loop</h3>
+              <p>City Hall steps &middot; 5k</p>
+            </div>
+            <div class="type">Road</div>
+          </li>
+          <li class="event" data-type="road">
+            <div class="date">Nov 26<span>Thu, 7:00 am</span></div>
+            <div>
+              <h3>Thanksgiving turkey trot</h3>
+              <p>Central park &middot; 5k</p>
+            </div>
+            <div class="type">Road</div>
+          </li>
+          <li class="event" data-type="track">
+            <div class="date">Dec 3<span>Thu, 6:00 pm</span></div>
+            <div>
+              <h3>Mile time trial</h3>
+              <p>Community track &middot; 1 mile</p>
+            </div>
+            <div class="type">Track</div>
+          </li>
+          <li class="event" data-type="trail">
+            <div class="date">Dec 5<span>Sat, 7:00 am</span></div>
+            <div>
+              <h3>Ridge trail and coffee</h3>
+              <p>East trailhead &middot; 10k</p>
+            </div>
+            <div class="type">Trail</div>
+          </li>
+          <li class="event" data-type="road">
+            <div class="date">Dec 12<span>Sat, 8:00 am</span></div>
+            <div>
+              <h3>Holiday lights run</h3>
+              <p>Main street &middot; 8k</p>
+            </div>
+            <div class="type">Road</div>
+          </li>
+        </ul>
+        <p class="empty">No runs of this type are scheduled yet.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div>&copy; <span id="year">2026</span> Fieldline Run Club</div>
+        <div class="footer-links"><a href="index.html">Home</a> <a href="about.html">Who We Are</a> <a href="events.html">Events</a> <a href="mission.html">Mission</a> <a href="signin.html">Sign In</a></div>
+      </div>
+      <p class="disclaimer">Fieldline Run Club is fictional, created for a Texas A&amp;M CSCE 412 class project.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

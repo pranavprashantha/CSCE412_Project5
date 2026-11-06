@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | Fieldline Run Club</title>
+  <meta name="description" content="Member sign in.">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="logo" href="index.html"><img src="images/logo.svg" alt="">Fieldline</a>
+        <button class="nav-toggle" aria-expanded="false" aria-label="Open menu">Menu</button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="signin.html" class="active" aria-current="page">Sign In</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <span class="label">Sign In</span>
+        <h1>Member sign in</h1>
+        <p>Members can sign in to save their favorite runs. New here? You can join any run without an account.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <form class="signin" id="signin-form" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email">
+            <div class="error"></div>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password">
+            <div class="error"></div>
+          </div>
+          <label class="check"><input type="checkbox" id="remember"> Keep me signed in</label>
+          <button class="btn" type="submit">Sign in</button>
+          <p class="muted" style="margin-top:16px">Demo site: there are no real accounts, and nothing you type is sent anywhere.</p>
+          <div class="notice" id="signin-notice" role="status"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div>&copy; <span id="year">2026</span> Fieldline Run Club</div>
+        <div class="footer-links"><a href="index.html">Home</a> <a href="about.html">Who We Are</a> <a href="events.html">Events</a> <a href="mission.html">Mission</a> <a href="signin.html">Sign In</a></div>
+      </div>
+      <p class="disclaimer">Fieldline Run Club is fictional, created for a Texas A&amp;M CSCE 412 class project.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
