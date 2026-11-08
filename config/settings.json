@@ -1,0 +1,7 @@
+{
+  "domain": "csce412prra2413.me",
+  "bucket": "csce412-prra2413-site",
+  "distribution_id": "E2XE8SGMTOFJIB",
+  "aws_profile": "project5",
+  "site_dir": "website"
+}

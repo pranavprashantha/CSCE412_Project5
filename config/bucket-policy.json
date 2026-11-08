@@ -1,0 +1,1 @@
+{"Version":"2008-10-17","Id":"PolicyForCloudFrontPrivateContent","Statement":[{"Sid":"AllowCloudFrontServicePrincipal","Effect":"Allow","Principal":{"Service":"cloudfront.amazonaws.com"},"Action":"s3:GetObject","Resource":"arn:aws:s3:::csce412-prra2413-site/*","Condition":{"ArnLike":{"AWS:SourceArn":"arn:aws:cloudfront::938407288822:distribution/E2XE8SGMTOFJIB"}}}]}
