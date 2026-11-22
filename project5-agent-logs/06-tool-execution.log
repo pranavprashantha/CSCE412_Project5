@@ -1,0 +1,390 @@
+# tool runs: tool, args, result
+# 10 events, in time order
+
+2026-11-08T03:47:55+00:00  [tool run] developer
+{
+  "tool": "list_files",
+  "args": {},
+  "result": {
+    "files": [
+      "website/404.html",
+      "website/about.html",
+      "website/css/style.css",
+      "website/events.html",
+      "website/images/hero.svg",
+      "website/images/logo.svg",
+      "website/images/ridge.svg",
+      "website/images/track.svg",
+      "website/index.html",
+      "website/js/main.js",
+      "website/mission.html",
+      "website/signin.html"
+    ]
+  }
+}
+
+2026-11-08T03:47:55+00:00  [tool run] developer
+{
+  "tool": "read_file",
+  "args": {
+    "path": "website/events.html"
+  },
+  "result": "{\"path\": \"website/events.html\", \"content\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\">\\n<head>\\n  <meta charset=\\\"UTF-8\\\">\\n  <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n  <title>Events | Fieldline Run Club</title>\\n  <meta name=\\\"description\\\" content=\\\"Upcoming road, track and trail runs.\\\">\\n  <link rel=\\\"icon\\\" href=\\\"images/logo.svg\\\" type=\\\"image/svg+xml\\\">\\n  <link rel=\\\"stylesheet\\\" href=\\\"css/style.css\\\">\\n</head>\\n<body>\\n  <header class=\\\"site-header\\\">\\n    <div class=\\\"container\\\">\\n      <nav class=\\\"nav\\\" aria-label=\\\"Main\\\">\\n        <a class=\\\"logo\\\" href=\\\"index.html\\\"><img src=\\\"images/logo.svg\\\" alt=\\\"\\\">Fieldline</a>\\n        <button class=\\\"nav-toggle\\\" aria-expanded=\\\"false\\\" aria-label=\\\"Open menu\\\">Menu</button>\\n        <ul class=\\\"nav-links\\\">\\n          <li><a href=\\\"index.html\\\">Home</a></li>\\n          <li><a href=\\\"about.html\\\">Who We Are</a></li>\\n          <li><a href=\\\"events.html\\\" class=\\\"active\\\" aria-current=\\\"page\\\">Events</a></li>\\n          <li><a href=\\\"mission.html\\\">Mission</a></li>\\n          <li><a href=\\\"signin.html\\\">Sign In</a></li>\\n        </ul>\\n      </nav>\\n    </div>\\n  </header>\\n\\n  <main>\\n    <section class=\\\"page-head\\\">\\n      <div class=\\\"container\\\">\\n        <span class=\\\"label\\\">Upcoming Events</span>\\n        <h1>Find your next run</h1>\\n        <p>All runs are free and open to everyone. Filter by type to find the one that fits you.</p>\\n      </div>\\n    </section>\\n\\n    <section clas...(cut)"
+}
+
+2026-11-08T03:47:58+00:00  [tool run] developer
+{
+  "tool": "write_file",
+  "args": {
+    "path": "website/events.html"
+  },
+  "result": {
+    "ok": true,
+    "path": "website/events.html",
+    "bytes": 5190
+  }
+}
+
+2026-11-08T03:47:59+00:00  [tool run] deployer
+{
+  "tool": "deploy_dryrun",
+  "args": {},
+  "result": {
+    "exit_code": 0,
+    "output": "DRY RUN: changes that would be made to s3://csce412-prra2413-site\n(dryrun) upload: website/events.html to s3://csce412-prra2413-site/events.html"
+  }
+}
+
+2026-11-08T03:48:01+00:00  [tool run] deployer
+{
+  "tool": "deploy",
+  "args": {},
+  "result": {
+    "exit_code": 0,
+    "output": "Uploading website/ to s3://csce412-prra2413-site\nCompleted 5.1 KiB/5.1 KiB (19.2 KiB/s) with 1 file(s) remaining\nupload: website/events.html to s3://csce412-prra2413-site/events.html\nClearing the CloudFront cache\n{\n    \"Id\": \"IAN4FPAW6D14RT00F3F1473XAL\",\n    \"Status\": \"InProgress\"\n}"
+  }
+}
+
+2026-11-08T03:48:02+00:00  [tool run] validator
+{
+  "tool": "verify",
+  "args": {},
+  "result": {
+    "exit_code": 0,
+    "report": {
+      "time": "2026-11-08T03:48:02.222885+00:00",
+      "domain": "csce412prra2413.me",
+      "passed": 7,
+      "total": 7,
+      "results": [
+        {
+          "check": "domain_resolves",
+          "passed": true,
+          "evidence": {
+            "addresses": [
+              "13.225.222.15",
+              "13.225.222.21",
+              "13.225.222.71",
+              "13.225.222.94"
+            ]
+          }
+        },
+        {
+          "check": "https_works",
+          "passed": true,
+          "evidence": {
+            "url": "https://csce412prra2413.me/",
+            "status": 200
+          }
+        },
+        {
+          "check": "http_redirects_to_https",
+          "passed": true,
+          "evidence": {
+            "url": "http://csce412prra2413.me/",
+            "status": 301,
+            "location": "https://csce412prra2413.me/"
+          }
+        },
+        {
+          "check": "certificate_matches_domain",
+          "passed": true,
+          "evidence": {
+            "names": [
+              "csce412prra2413.me"
+            ],
+            "issuer": "Amazon",
+            "expires": "2027-05-23T23:32:35+00:00"
+          }
+        },
+        {
+          "check": "pages_load",
+          "passed": true,
+          "evidence": {
+            "pages": {
+              "/": 200,
+              "/index.html": 200,
+              "/about.html": 200,
+              "/events.html": 200,
+              "/mission.html": 200,
+              "/signin.html": 200
+            }
+          }
+        },
+        {
+          "check": "s3_direct_access_denied",
+          "passed": true,
+          "evidence": {
+            "url": "https://csce412-prra2413-site.s3.amazonaws.com/index.html",
+            "status": 403
+          }
+        },
+        {
+          "check": "cloudfront_serves_content",
+          "passed": true,
+          "evidence": {
+            "via": "1.1 aad28f029eb5b6de488ed1dde6002a42.cloudfront.net (CloudFront)",
+            "x-cache": "Hit from cloudfront"
+          }
+        }
+      ]
+    }
+  }
+}
+
+2026-11-08T04:41:38+00:00  [tool run] validator
+{
+  "tool": "verify",
+  "args": {},
+  "result": {
+    "exit_code": 1,
+    "report": {
+      "time": "2026-11-08T04:41:38.543894+00:00",
+      "domain": "csce412prra2413.me",
+      "passed": 5,
+      "total": 7,
+      "results": [
+        {
+          "check": "domain_resolves",
+          "passed": true,
+          "evidence": {
+            "addresses": [
+              "13.225.222.15",
+              "13.225.222.21",
+              "13.225.222.71",
+              "13.225.222.94"
+            ]
+          }
+        },
+        {
+          "check": "https_works",
+          "passed": false,
+          "evidence": {
+            "url": "https://csce412prra2413.me/",
+            "status": 403
+          }
+        },
+        {
+          "check": "http_redirects_to_https",
+          "passed": true,
+          "evidence": {
+            "url": "http://csce412prra2413.me/",
+            "status": 301,
+            "location": "https://csce412prra2413.me/"
+          }
+        },
+        {
+          "check": "certificate_matches_domain",
+          "passed": true,
+          "evidence": {
+            "names": [
+              "csce412prra2413.me"
+            ],
+            "issuer": "Amazon",
+            "expires": "2027-05-23T23:32:35+00:00"
+          }
+        },
+        {
+          "check": "pages_load",
+          "passed": false,
+          "evidence": {
+            "pages": {
+              "/": 403,
+              "/index.html": 403,
+              "/about.html": 403,
+              "/events.html": 403,
+              "/mission.html": 403,
+              "/signin.html": 403
+            }
+          }
+        },
+        {
+          "check": "s3_direct_access_denied",
+          "passed": true,
+          "evidence": {
+            "url": "https://csce412-prra2413-site.s3.amazonaws.com/index.html",
+            "status": 403
+          }
+        },
+        {
+          "check": "cloudfront_serves_content",
+          "passed": true,
+          "evidence": {
+            "via": "1.1 6a5003b963ae94b0c5f155e7bc35deea.cloudfront.net (CloudFront)",
+            "x-cache": "Error from cloudfront"
+          }
+        }
+      ]
+    }
+  }
+}
+
+2026-11-08T04:41:41+00:00  [tool run] validator
+{
+  "tool": "aws_inspect",
+  "args": {},
+  "result": {
+    "bucket_policy": {
+      "present": false,
+      "error": "aws: [ERROR]: An error occurred (NoSuchBucketPolicy) when calling the GetBucketPolicy operation: The bucket policy does not exist"
+    },
+    "public_access_block": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": true,
+      "RestrictPublicBuckets": true
+    },
+    "cloudfront": {
+      "enabled": true,
+      "aliases": [
+        "csce412prra2413.me"
+      ],
+      "default_root_object": "index.html",
+      "viewer_protocol_policy": "redirect-to-https",
+      "origin_domain": "csce412-prra2413-site.s3.us-east-1.amazonaws.com",
+      "origin_access_control_id": "E3M9GG6UXEHWN3",
+      "certificate_arn": "arn:aws:acm:us-east-1:938407288822:certificate/918166b0-71dc-41ba-9bca-ad3eb391982d",
+      "custom_error_responses": [
+        {
+          "code": 403,
+          "page": "/404.html",
+          "response": "404"
+        },
+        {
+          "code": 404,
+          "page": "/404.html",
+          "response": "404"
+        }
+      ]
+    },
+    "dns": {
+      "records": [
+        {
+          "type": "A",
+          "alias_target": "d3qh4cqyou9p10.cloudfront.net."
+        }
+      ]
+    }
+  }
+}
+
+2026-11-08T04:41:49+00:00  [tool run] deployer
+{
+  "tool": "apply_fix",
+  "args": {
+    "fix": "restore_bucket_policy"
+  },
+  "result": {
+    "ok": true,
+    "fix": "restore_bucket_policy",
+    "output": ""
+  }
+}
+
+2026-11-08T04:42:11+00:00  [tool run] validator
+{
+  "tool": "verify",
+  "args": {},
+  "result": {
+    "exit_code": 0,
+    "report": {
+      "time": "2026-11-08T04:42:11.465617+00:00",
+      "domain": "csce412prra2413.me",
+      "passed": 7,
+      "total": 7,
+      "results": [
+        {
+          "check": "domain_resolves",
+          "passed": true,
+          "evidence": {
+            "addresses": [
+              "13.225.222.15",
+              "13.225.222.21",
+              "13.225.222.71",
+              "13.225.222.94"
+            ]
+          }
+        },
+        {
+          "check": "https_works",
+          "passed": true,
+          "evidence": {
+            "url": "https://csce412prra2413.me/",
+            "status": 200
+          }
+        },
+        {
+          "check": "http_redirects_to_https",
+          "passed": true,
+          "evidence": {
+            "url": "http://csce412prra2413.me/",
+            "status": 301,
+            "location": "https://csce412prra2413.me/"
+          }
+        },
+        {
+          "check": "certificate_matches_domain",
+          "passed": true,
+          "evidence": {
+            "names": [
+              "csce412prra2413.me"
+            ],
+            "issuer": "Amazon",
+            "expires": "2027-05-23T23:32:35+00:00"
+          }
+        },
+        {
+          "check": "pages_load",
+          "passed": true,
+          "evidence": {
+            "pages": {
+              "/": 200,
+              "/index.html": 200,
+              "/about.html": 200,
+              "/events.html": 200,
+              "/mission.html": 200,
+              "/signin.html": 200
+            }
+          }
+        },
+        {
+          "check": "s3_direct_access_denied",
+          "passed": true,
+          "evidence": {
+            "url": "https://csce412-prra2413-site.s3.amazonaws.com/index.html",
+            "status": 403
+          }
+        },
+        {
+          "check": "cloudfront_serves_content",
+          "passed": true,
+          "evidence": {
+            "via": "1.1 7ac8097871abec75aedfb453e4625c40.cloudfront.net (CloudFront)",
+            "x-cache": "Hit from cloudfront"
+          }
+        }
+      ]
+    }
+  }
+}
+
