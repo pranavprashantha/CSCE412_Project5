@@ -3,5 +3,7 @@
   "bucket": "csce412-prra2413-site",
   "distribution_id": "E2XE8SGMTOFJIB",
   "aws_profile": "project5",
-  "site_dir": "website"
+  "site_dir": "website",
+  "pipeline": "project6-pipeline",
+  "release_bucket": "csce412-prra2413-releases"
 }
