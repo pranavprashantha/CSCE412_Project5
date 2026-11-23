@@ -1,0 +1,15 @@
+# buildspec.yml
+# One CodeBuild project runs every stage.
+# The pipeline sets STAGE to test, deploy or verify, and this runs pipeline/<STAGE>.sh
+
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo "Running stage $STAGE"
+      - bash pipeline/$STAGE.sh
+
+artifacts:
+  files:
+    - '**/*'
