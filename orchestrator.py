@@ -7,12 +7,15 @@ Usage:
 import argparse
 import os
 import time
+import json
 
 from agents.deployer import Deployer
 from agents.developer import Developer
 from agents.planner import Planner
 from agents.runlog import RunLog
 from agents.validator import FIXES, Validator
+from agents.incident_manager import IncidentManager
+from agents.test_engineer import TestEngineer
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -92,6 +95,56 @@ class Orchestrator:
             if result.get("ok") is False:
                 print(f"\nStopping: task {task['id']} did not succeed.")
                 return False
+        return True
+
+    def write_tests(self):
+        """Test Engineer writes new tests from the requirements and runs them."""
+        with open(os.path.join(ROOT, "config", "requirements.md")) as f:
+            requirements = f.read()
+        self.send("orchestrator", "test_engineer", "task", {"action": "write_tests"})
+        result = self.test_engineer.write_tests(requirements)
+        self.send("test_engineer", "orchestrator", "task_result", result)
+        print("\nSaved", result["saved"], "tests.", result["passed"], "/", result["total"], "tests pass.")
+        print("Commit tests/generated/agent_tests.json so the pipeline runs them too.")
+        return result["ok"]
+
+    def check_pipeline(self):
+        """Deployer checks that the pipeline is set up correctly."""
+        self.send("orchestrator", "deployer", "task", {"action": "check_pipeline"})
+        result = self.deployer.check_pipeline()
+        self.send("deployer", "orchestrator", "task_result", result)
+        return result["ok"]
+
+    def diagnose(self):
+        """Incident Manager diagnoses the latest failed run, then hands off to the right agent."""
+        self.send("orchestrator", "incident_manager", "task", {"action": "diagnose_latest_failure"})
+        report = self.incident_manager.diagnose()
+        self.send("incident_manager", "orchestrator", "diagnosis", report)
+        if not report["ok"]:
+            return False
+
+        if report["failed_stage"] == "Build":
+            # tests failed before deploy: ask the Test Engineer to confirm it on the same code
+            self.send("incident_manager", "test_engineer", "confirm_test_failure",
+                      {"commit": report["commit"], "root_cause": report["diagnosis"]["root_cause"]})
+            check = self.test_engineer.explain_results()
+            self.send("test_engineer", "incident_manager", "confirmation", check)
+        else:
+            # deploy or verify failed: ask the Validator to confirm the live site is healthy again
+            self.send("incident_manager", "validator", "confirm_site_healthy",
+                      {"known_good_release": report["known_good_release"]})
+            check = self.validator.verify()
+            self.send("validator", "incident_manager", "confirmation", check)
+
+        os.makedirs(os.path.join(ROOT, "reports"), exist_ok=True)
+        path = os.path.join(ROOT, "reports", "incident-" + report["commit"][:8] + ".json")
+        json.dump({"report": report, "confirmation": check}, open(path, "w"), indent=2)
+        print("\n" + "=" * 60)
+        print("Failed stage:", report["failed_stage"], "| commit:", report["commit"][:8])
+        print("Root cause:", report["diagnosis"]["root_cause"])
+        print("Fix:", report["diagnosis"]["recommended_fix"])
+        print("Known-good release:", report["known_good_release"])
+        print("Saved:", path)
         return True
 
 
