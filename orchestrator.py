@@ -152,6 +152,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the Fieldline multi-agent system")
     parser.add_argument("--goal", help="what you want the agents to do")
     parser.add_argument("--verify-only", action="store_true", help="only check (and repair) the live site")
+    parser.add_argument("--write-tests", action="store_true", help="Test Engineer writes new tests")
+    parser.add_argument("--check-pipeline", action="store_true", help="Deployer checks the pipeline setup")
+    parser.add_argument("--diagnose", action="store_true", help="Incident Manager diagnoses the last failed run")
     args = parser.parse_args()
 
     orchestrator = Orchestrator()
