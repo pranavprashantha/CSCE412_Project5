@@ -13,6 +13,7 @@ TOOLS = os.path.join(ROOT, "tools")
 sys.path.insert(0, TOOLS)
 
 import site_files  # noqa: E402  (Developer's file tools)
+import test_files  # noqa: E402  (Test Engineer's tools)
 
 
 def _script(cmd, timeout=180):
@@ -53,6 +54,12 @@ REGISTRY = {
     "verify": _verify,
     "aws_inspect": _inspect,
     "apply_fix": lambda fix: _json_script([sys.executable, os.path.join(TOOLS, "apply_fix.py"), fix]),
+        # Project 6 tools
+    "save_tests": lambda tests: test_files.save_tests(tests),
+    "run_tests": lambda: test_files.run_tests(),
+    "pipeline_config": lambda: _json_script([sys.executable, os.path.join(TOOLS, "pipeline_inspect.py"), "config"]),
+    "pipeline_last_failure": lambda: _json_script([sys.executable, os.path.join(TOOLS, "pipeline_inspect.py"), "last-failure"]),
+    "known_good": lambda: _json_script([sys.executable, os.path.join(TOOLS, "pipeline_inspect.py"), "known-good"]),
 }
 
 
