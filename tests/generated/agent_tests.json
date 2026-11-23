@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Verify index page hero heading",
+    "file": "index.html",
+    "must_contain": [
+      "Run together.",
+      "Every pace welcome."
+    ]
+  },
+  {
+    "name": "Verify about page leaders",
+    "file": "about.html",
+    "must_contain": [
+      "Maya Torres",
+      "Eli Brooks",
+      "Nora Kim"
+    ]
+  },
+  {
+    "name": "Verify events page filters",
+    "file": "events.html",
+    "must_contain": [
+      "Upcoming Events",
+      "Find your next run"
+    ]
+  },
+  {
+    "name": "Verify mission page statement",
+    "file": "mission.html",
+    "must_contain": [
+      "To make running a shared, welcoming habit for everyone in our town, at every pace and every age.",
+      "Why we run"
+    ]
+  },
+  {
+    "name": "Verify signin page form elements",
+    "file": "signin.html",
+    "must_contain": [
+      "Member sign in",
+      "Keep me signed in"
+    ]
+  },
+  {
+    "name": "Verify 404 page content",
+    "file": "404.html",
+    "must_contain": [
+      "Off the route",
+      "The page you are looking for does not exist or has moved."
+    ]
+  }
+]

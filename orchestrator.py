@@ -27,6 +27,8 @@ class Orchestrator:
         self.developer = Developer(self.log)
         self.deployer = Deployer(self.log)
         self.validator = Validator(self.log)
+        self.test_engineer = TestEngineer(self.log)
+        self.incident_manager = IncidentManager(self.log)
 
     def send(self, sender, receiver, kind, content):
         """Every hand-off between agents goes through here and into the log."""
