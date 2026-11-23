@@ -162,7 +162,13 @@ if __name__ == "__main__":
         ok = orchestrator.check_and_repair()
     elif args.goal:
         ok = orchestrator.run_goal(args.goal)
+    elif args.write_tests:
+        ok = orchestrator.write_tests()
+    elif args.check_pipeline:
+        ok = orchestrator.check_pipeline()
+    elif args.diagnose:
+        ok = orchestrator.diagnose()
     else:
-        parser.error("use --goal \"...\" or --verify-only")
+        parser.error("use --goal, --verify-only, --write-tests, --check-pipeline or --diagnose")
     print("\nRESULT:", "success" if ok else "needs attention")
     print("Log:", orchestrator.log.path)
