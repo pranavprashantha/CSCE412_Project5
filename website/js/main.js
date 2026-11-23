@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 3. Events: filter by run type
-  var filterButtons = document.querySelectorAll(".filters button");
+  var filterButtons = document.querySelectorAll(".filter-bar button");
   var events = document.querySelectorAll(".event");
   var empty = document.querySelector(".empty");
   filterButtons.forEach(function (button) {
